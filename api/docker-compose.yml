@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: apiMySql
+    # command: sh -c "npm install && npm install -g nodemon knex && knex migrate:latest && npm start"
+    command: sh -c "npm install && npm start"
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/usr/apiMySql
+  db_mysql:
+    image: mysql:latest
+    container_name: mysql-test
+    volumes:
+      - ./data/db:/var/lib/mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      "MYSQL_DATABASE": "${MYSQL_DATABASE}"
+      "MYSQL_ROOT_PASSWORD": "${MYSQL_ROOT_PASSWORD}"
+  adminer_mysql:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
