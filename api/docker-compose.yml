@@ -4,8 +4,8 @@ services:
   app:
     build: .
     container_name: apiMySql
-    # command: sh -c "npm install && npm install -g nodemon knex && knex migrate:latest && npm start"
-    command: sh -c "npm install && npm start"
+    command: sh -c "npm install && npm install -g nodemon knex && knex migrate:latest && npm start"
+    # command: sh -c "npm install && npm start"
     ports:
       - ${PORT}:${PORT}
     volumes:

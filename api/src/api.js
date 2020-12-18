@@ -1,14 +1,12 @@
 require('dotenv').config();
+const routers = require('./routers');
 const express = require('express');
 
 const app = express();
 
 app.use(express.json());
-
-app.get('/', (req, res) => {
-  return res.send('Hello Renan');
-});
+app.use(routers);
 
 app.listen(process.env.PORT, process.env.HOST, () => {
-    console.log('listening on port ' + process.env.PORT);
+  console.log('listening on port ' + process.env.PORT);
 });
